@@ -7,21 +7,38 @@ from django.urls import reverse
 import re
 import sys
 from itertools import cycle
+from django.contrib.auth import authenticate, login
 # Create your views here.
-
+ 
 def index(request):
 
     return render(request, 'pasteleria/index.html',)
 def home(request):
 
     return render(request, 'pasteleria/home.html',)
+def frm_iniciar_sesion(request):
+    return render(request, 'pasteleria/frm_iniciar_sesion.html',)
+def iniciar_sesion(request):
+    usuario = request.POST["nombre_user"]
+    clave = request.POST["contrasena_user"]
+
+    user = authenticate(request, username=usuario, password=clave)
+
+    if user is not None:
+        login(request, user)
+        #return HttpResponse(user.username)
+        nombre = user.first_name + " " + user.last_name
+        return render(request, 'pasteleria/usuario_correcto.html',)
+        #return HttpResponseRedirect(reverse('panaderia:index'))
+    else:
+        return render(request, 'pasteleria/error_usuario.html',)
 
 def frm_registrar_cli(request):
     comuna = Comuna.objects.all()
     carrito = {'comuna':comuna}
     return render(request, 'pasteleria/frm_registrar_cli.html', carrito,)
 
-def registrar_cliente(request):
+def registrar_cliente(request): 
     error = 'Error en el ingreso del'
     v_error = False
     primer_erro = False 
@@ -74,9 +91,9 @@ def registrar_cliente(request):
 
     cliente =Cliente(rut= rut_c, nombre_cli=nombre, apellido_cli=apellido, fecha_nac=fecha, correo=correo, direccion=dirrecion, comuna=com, contrasena=contrasena, contrasena_val=validar_contrasena)
     cliente.save()
-  
- 
     return HttpResponseRedirect(reverse('pasteleria:cliente_regitrado'))
+
+
 def cliente_regitrado(request):
     return render(request,'pasteleria/cliente_regitrado.html')
 
@@ -92,6 +109,7 @@ def buscar_y_mostrar_cliente(request):
     
     carrito = {'listado':listado}
     return render(request, 'pasteleria/mostrar_cliente.html',carrito)
+    
    
 def eliminar_cliente(request):
     eliminador = Cliente.objects.get(id= request.POST['id_e'])
@@ -171,7 +189,7 @@ def registrar_comuna(request):
     comuna = Comuna(nombre_c=nombre_com)
     comuna.save()
     return render(request, 'pasteleria/comuna_registrado.html',) 
-    
+
 def frm_buscar_comuna(request):
     return render(request,'pasteleria/frm_buscar_comuna.html')
 def buscar_y_mostrar_comuna(request):
@@ -212,9 +230,12 @@ def registrar_producto(request):
     precio = request.POST['precio_producto']
     if(nombre_com =="" or precio == 0 ):
         return render(request, 'pasteleria/error_ingreso.html',)  
-    p = Producto(nombre_pro=nombre_com, precio_pro=precio)
-    p.save()
-    return render(request, 'pasteleria/producto_registrado.html',) 
+    if request.user.has_perm('pasteleria.cocinero'):
+        p = Producto(nombre_pro=nombre_com, precio_pro=precio)
+        p.save()
+        return render(request, 'pasteleria/producto_registrado.html',) 
+    else:
+         return render(request, 'pasteleria/falta_credenciales.html',) 
 def frm_buscar_producto(request):
     return render(request,'pasteleria/frm_buscar_producto.html')
 def buscar_y_mostrar_producto(request):

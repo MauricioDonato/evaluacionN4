@@ -4,6 +4,9 @@ from . import views
 app_name = 'pasteleria'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('home', views.home, name='home'),
+    path('frm_iniciar_sesion', views.frm_iniciar_sesion, name='frm_iniciar_sesion'),
+    path('iniciar_sesion', views.iniciar_sesion, name='iniciar_sesion'),
     path('frm_registrar_cli', views.frm_registrar_cli, name='frm_registrar_cli'),
     path('registrar_cliente', views.registrar_cliente, name='registrar_cliente'),
     path('cliente_regitrado', views.cliente_regitrado, name='cliente_regitrado' ),

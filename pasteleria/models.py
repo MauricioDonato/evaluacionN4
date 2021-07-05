@@ -1,11 +1,17 @@
 from django.db import models
 from django.db.models.base import Model
+from django.utils.translation import ugettext as _
 # Create your models here.
 class Producto(models.Model):
     nombre_pro =  models.CharField(max_length=50,default='')
     precio_pro = models.IntegerField(default=0)
     def __str__(self):
         return self.nombre_pro
+    class Meta:
+        permissions = (
+            ( 'gerente', _('Es gerente') ),
+            ( 'cocinero', _('Es cocinero') ),
+        )
 
 class Comuna(models.Model):
     nombre_c =  models.CharField(max_length=50,default='')
@@ -24,4 +30,5 @@ class Cliente(models.Model):
     contrasena_val = models.CharField(max_length=50)
     def __str__(self):
         return self.rut
+    
 

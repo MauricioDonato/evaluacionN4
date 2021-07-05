@@ -35,5 +35,18 @@
             </div>
     </nav>
 </div>
-<h1 class="mover_I_25 ">Cliente editado de manera correcta</h1>
-<a class="btn btn-primary mover_I_25" style="margin-left: 40%;"  href="{% url 'pasteleria:index' %}">Volver a la pagina inicial</a>
+<div class="container col-sm-7 mt-2 frm_comuna">
+    <h1 class="centrar">Ingresar Usuario</h1>
+<form action="{% url 'pasteleria:iniciar_sesion' %}" method="post">
+    {% csrf_token %}
+    <div class="row mover_I_25">
+        <h5 class="col-sm-3 mt-1">Usario:</h5>
+    <input type="text" name="nombre_user"  class="col-sm-4 form-control"  required >
+    </div>
+    <div class="row mover_I_25">
+        <h5 class="col-sm-3 ">Contraseña:</h5>
+    <input type="password" name="contrasena_user"  class="col-sm-4 form-control"  required>
+    </div>
+    <input type="submit"  class="btn btn-primary boton_com"  value="Guardar">
+</form>
+</div>
