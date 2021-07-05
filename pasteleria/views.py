@@ -171,7 +171,7 @@ def registrar_comuna(request):
     comuna = Comuna(nombre_c=nombre_com)
     comuna.save()
     return render(request, 'pasteleria/comuna_registrado.html',) 
-
+    
 def frm_buscar_comuna(request):
     return render(request,'pasteleria/frm_buscar_comuna.html')
 def buscar_y_mostrar_comuna(request):
