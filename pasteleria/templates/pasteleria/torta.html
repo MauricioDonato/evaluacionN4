@@ -29,5 +29,29 @@
             </div>
     </nav>
 </div>
-<h1 class="mover_I_25 ">Usuario correcta</h1>
-<a class="btn btn-primary mover_I_25" style="margin-left: 40%;" href="{% url 'pasteleria:index' %}">Volver a la pagina inicial</a>
+<div class="container col-sm-7 mt-2 frm_comuna" style="margin-top: 10%;"> 
+    <h1 class="color_letar centrar"> torta de Maracuya</h1><div style="margin-right:30%;">
+    <h5 class="color_letar centrar" >La torta de maracuyá es un rico postre clásico de la gastronomía Peruana. Es el complemento perfecto a la hora te tomar una taza de café o para servirle a la familia o amigos.
+    </h5></div>
+    <div class="row">
+    <img id="imagen" class="col-sm-11" style="margin-left: 5%; margin-top: 10%;" src="{% static 'pasteleria/img/torta_maracuya.jpg' %}">
+    </div>
+    <div class="container" style="margin-left: 25%; margin-top: 5%;">
+        <h4 class="color_letar">Detalle del producto</h4>
+    </div>
+    <div class="container" style=" margin-top: 5%;">
+        <h5 class="color_letar"> 
+            El producto está hecho en base de pulpa de maracuyá, harina de trigo, polvo de hornear, huevos, azúcar y escencia de vainilla.
+          </h5>
+
+    </div>
+    <div style="margin-top: 5%; margin-left: 25%;" class="col-sm-5">
+        <h5 class="color_letar">
+          <br>
+          <br> El precio de este producto es de $12.990
+        </h5>
+    </div>
+        <div class="  btn btn-primary" style="margin-left: 40%; margin-top: 10% ; margin-bottom: 10%;"> 
+        <a class=" color_letra" href="{% url 'pasteleria:pedido' %}">      Pedir      </a>
+        </div>
+</div>

@@ -1,2 +1,33 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'pasteleria/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'pasteleria/css/style_nuestro.css' %}">
+<div>
+    <nav class="navbar navbar-expand-lg  color_menu">
+        <div class="container">
+            <img id="imagen" class="logo" src="{% static 'pasteleria/img/logo_cafe.png' %}">
+            <a class="navbar-brand color_letar" href="{% url 'pasteleria:index' %}">Cake House</a>
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:index' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:torta' %}">Producto<span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link color_letar" href="#">Registrarse</a>
+                    </li>
+
+
+                    <a class="nav-link color_letar" href="{% url 'pasteleria:frm_iniciar_sesion' %}">Iniciar sesion</a>
+                    </li>
+
+
+                    </li>
+                </ul>
+            </div>
+    </nav>
+</div>
 <h1>Error en el ingreso del rut </h1>
 <a href="{% url 'pasteleria:index' %}">Volver a la pagina inicial</a>

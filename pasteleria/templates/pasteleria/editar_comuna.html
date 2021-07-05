@@ -9,20 +9,14 @@
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link color_letar" href="Home.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown color_letar">
-                        <a class="nav-link dropdown-toggle color_letar" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Productos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item color_letar" href="Pagina2.html">Torta de Maracuya</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.1.html">Kuchen Durazo y Frambuesas</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.2.html">Cupcakes Frambuesa y Chocolate</a>
-                    <li>
+                    <li class="nav-item active">
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:torta' %}">Producto<span class="sr-only">(current)</span></a>
+                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link color_letar" href="Registro.html">Registrarse</a>
+                        <a class="nav-link color_letar" href="#">Registrarse</a>
                     </li>
 
 
@@ -43,11 +37,11 @@
         <h5 class="col-sm-2 mt-1">comuna:</h5>
     <input type="text" name="id_editor" value="{{comuna.id}}" hidden>
     <br>
-    <input type="text"  class="col-sm-4 form-control" name="nombre_editor" value="{{comuna.nombre_c}}" >
-    <br>
+    <input type="text" id="nombre_ce" class="col-sm-4 form-control" name="nombre_editor" required value="{{comuna.nombre_c}}" >
+    <div id="error_c" style="color: red; visibility: hidden;" class="error">*Debe ingresar comuna</div>
     </div>
 
-    <input type="submit"  class="btn btn-primary boton_com"  value="   editar   ">
+    <input type="submit" id="Guardar_ec" class="btn btn-primary boton_com"  value="   editar   ">
 </form>
 </div><div class="boton_com row" style="margin-left: 23%;">
 <div class="  btn btn-primary col-sm-4">
@@ -57,3 +51,22 @@
 <a class=" color_letra" href="{% url 'pasteleria:frm_buscar_comuna' %}">volver al buscador</a>
 </div>
 </div>
+<script type="text/javascript" src="{% static 'pasteleria/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'pasteleria/js/jquery-3.6.0.min.js' %}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Guardar_ec").click(function () {
+            var nombre = $("#nombre_ce").val();
+            if (nombre == "") {
+                $("#error_c").css("visibility", "visible")
+                return false;
+            }
+            else {
+                return true;
+            }
+
+        });
+        });
+
+</script>

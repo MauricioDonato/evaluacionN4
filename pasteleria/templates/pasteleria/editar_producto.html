@@ -9,20 +9,14 @@
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link color_letar" href="Home.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown color_letar">
-                        <a class="nav-link dropdown-toggle color_letar" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Productos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item color_letar" href="Pagina2.html">Torta de Maracuya</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.1.html">Kuchen Durazo y Frambuesas</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.2.html">Cupcakes Frambuesa y Chocolate</a>
-                    <li>
+                    <li class="nav-item active">
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:torta' %}">Producto<span class="sr-only">(current)</span></a>
+                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link color_letar" href="Registro.html">Registrarse</a>
+                        <a class="nav-link color_letar" href="#">Registrarse</a>
                     </li>
 
 
@@ -30,7 +24,7 @@
                     </li>
 
 
-                    </li> 
+                    </li>
                 </ul>
             </div>
     </nav>
@@ -42,15 +36,17 @@
     <div class="row mover_I_25">
     <input type="text" name="id_editor" value="{{producto.id}}" hidden>
     <h5 class="col-sm-2 mt-1">Producto:</h5>
-    <input type="text" class="col-sm-4 form-control" name="nombre_editor" value="{{producto.nombre_pro}}" >
+    
+    <input type="text" id="producto_e" class="col-sm-4 form-control" name="nombre_editor" value="{{producto.nombre_pro}}" required >
+    <div id="error_ce" style="color: red; visibility: hidden;" class="error">*Debe ingresar Producto</div>
     </div>
     <div class="row mover_I_25">
         <h5 class="col-sm-2 mt-1">Precio:</h5>
-    <input type="text" class="col-sm-4 form-control"  name="precio_editor" value="{{producto.precio_pro}}">
-    <br>
+    <input type="number" id="precio_e" class="col-sm-4 form-control"  name="precio_editor" value="{{producto.precio_pro}}" required>
+    <div id="error_pe" style="color: red; visibility: hidden;" class="error">*Debe ingresar precio</div>
     </div>
 
-    <input type="submit"   class="btn btn-primary boton_com" value="editar">
+    <input type="submit" id="Guardar_pe"  class="btn btn-primary boton_com" value="editar">
 </form>
 </div>
 <div class="boton_com row" style="margin-left: 20%;">
@@ -61,3 +57,45 @@
 <div class="  btn btn-primary col-sm-4 ">
 <a class=" color_letra" href="{% url 'pasteleria:frm_buscar_comuna' %}">volver al buscador</a></div>
 </div>
+
+<script type="text/javascript" src="{% static 'pasteleria/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'pasteleria/js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Guardar_pe").click(function () {
+            var producto = $("#producto_e").val();
+            var precio = $("#precio_e").val();
+            
+            if (precio == "") {
+                $("#error_pe").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_pe").css("visibility", "hidden")
+              
+            }
+            if (precio <= 0) {
+                $("#error_pe").css("visibility", "visible")
+                return false;
+            }
+            else {
+                $("#error_pe").css("visibility", "hidden")
+            }
+            if (producto == "") {
+                $("#error_ce").css("visibility", "visible")
+                return false;
+                
+            }
+            else {
+             
+                $("#error_c").css("visibility", "hidden")
+                return true;
+               
+            }
+          
+
+        });
+        });
+
+</script>

@@ -29,22 +29,38 @@
             </div>
     </nav>
 </div>
-<div class="container col-sm-7 mt-2 frm_comuna">
-    <h1 class="centrar">Ingresar Usuario</h1>
-<form action="{% url 'pasteleria:iniciar_sesion' %}" method="post">
-    {% csrf_token %}
-    <div class="row mover_I_25">
-        <h5 class="col-sm-3 mt-1">Usario:</h5>
-    <input type="text" id="nombre_U" name="nombre_user"  class="col-sm-4 form-control"  required >
-    <div id="error_u" style="color: red; visibility: hidden;" class="error">*Debe ingresar nombre de usuario</div>
+<div class="container col-sm-7 mt-2 frm_comuna" style="margin-top: 10%;"> 
+    <h1 class="color_letar centrar"> torta de Maracuya</h1><div style="margin-right:30%;">
     </div>
-    <div class="row mover_I_25">
-        <h5 class="col-sm-3 ">Contraseña:</h5>
-    <input type="password" id="contra_u" name="contrasena_user"  class="col-sm-4 form-control"  required>
-    <div id="error_con" style="color: red; visibility: hidden;" class="error">*Debe ingresar contraseña</div>
+    <div class="row">
+    <img id="imagen" class="col-sm-11" style="margin-left: 5%; margin-top: 10%;" src="{% static 'pasteleria/img/torta_maracuya.jpg' %}">
     </div>
-    <input type="submit" id="Guardar_u"  class="btn btn-primary boton_com"  value="Guardar">
-</form>
+    <div  class="container-fluid border-primary col-sm-6">
+        <h1 class="color_letar">Descripción</h1> <br>
+        <p class="color_letar">La torta de maracuyá es un rico postre clásico de la gastronomía Peruana. Es el complemento perfecto a la hora
+          te tomar una taza de café o para servirle a la familia o amigos</p>
+        <br>
+        <h4 class="color_letar">Precio: $12.990</h4>
+      </div>
+    
+      <form action="{% url 'pasteleria:index' %}" method="post">
+        <h2 class="color_letar" style="margin-left: 23%;margin-top: 10%;">Registre sus datos</h2>
+        {% csrf_token %}
+        <div class="row mover_I_25">
+            <h5 class="col-sm-3 mt-1">Usario:</h5>
+        <input type="text" id="nombre_U" name="nombre_user"  class="col-sm-4 form-control"  required >
+        <div id="error_u" style="color: red; visibility: hidden;" class="error">*Debe ingresar nombre de usuario</div>
+        </div>
+        <div class="row mover_I_25">
+            <h5 class="col-sm-3 ">Contraseña:</h5>
+        <input type="password" id="contra_u" name="contrasena_user"  class="col-sm-4 form-control"  required>
+        <div id="error_con" style="color: red; visibility: hidden;" class="error">*Debe ingresar contraseña</div>
+        </div>
+        <input type="submit" id="Guardar_u"  class="btn btn-primary boton_com"  value="Guardar">
+    </form>
+    
+    
+      
 </div>
 
 

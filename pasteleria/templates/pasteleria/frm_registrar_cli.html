@@ -9,20 +9,14 @@
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link color_letar" href="Home.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown color_letar">
-                        <a class="nav-link dropdown-toggle color_letar" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Productos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item color_letar" href="Pagina2.html">Torta de Maracuya</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.1.html">Kuchen Durazo y Frambuesas</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.2.html">Cupcakes Frambuesa y Chocolate</a>
-                    <li>
+                    <li class="nav-item active">
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:torta' %}">Producto<span class="sr-only">(current)</span></a>
+                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link color_letar" href="Registro.html">Registrarse</a>
+                        <a class="nav-link color_letar" href="#">Registrarse</a>
                     </li>
 
 
@@ -35,46 +29,175 @@
             </div>
     </nav>
 </div>
-<div class="container col-sm-7 mt-2 frm_comuna" style="margin-bottom: 10%;"> 
+<div class="container col-sm-7 mt-2 frm_comuna" style="margin-bottom: 10%;">
     <h1 class="centrar color_letar">Ingresar Cliente</h1>
-<form action="{% url 'pasteleria:registrar_cliente' %}" method="post">
-    {% csrf_token %}
-    <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
-        <h5 class="col-sm-2 mt-1 color_letar">rut:</h5>
-    <input type="text" name="rut" class="col-sm-4 form-control" placeholder="123456789"  required>
+    <form action="{% url 'pasteleria:registrar_cliente' %}" method="post">
+        {% csrf_token %}
+        <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
+            <h5 class="col-sm-2 mt-1 color_letar">rut:</h5>
+            <input id="rut" type="text" name="rut" class="col-sm-4 form-control" placeholder="123456789" required>
+            
 
-    <h5 class="col-sm-2 mt-1 color_letar">nombre:</h5>
-    <input type="text" name="nombre" class="col-sm-4 form-control"  placeholder="Juan" required>
-    <br>
-    </div>
-    <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
-        <h5 class="col-sm-2 mt-1 color_letar">apellido:</h5>
-    <input type="text" name="apellido" placeholder="Campos"  class="col-sm-4 form-control" required>
-        <h5 class="col-sm-2 mt-1 color_letar">Fecha de nacimiento:</h5>
-    <input type="date" name="Fecha_nacimiento" class="col-sm-4 form-control" required>
-    <br>
-    </div>
-    <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
-        <h5 class="col-sm-2 mt-1 color_letar">Correo:</h5>
-    <input type="text" class="col-sm-4 form-control" name="correo" placeholder="correo@algo.com" required>
-        <h5 class="col-sm-2 mt-1 color_letar">dirrecion:</h5>
-    <input type="text" name="dirrecion" class="col-sm-4 form-control" placeholder="calle 1234" required>
-    </div>
-    <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
-        <h5 class="col-sm-2 mt-1 color_letar">Comuna:</h5>
-    <select class="col-sm-4 form-control" name="comuna" required>
-        <option value="">Seleccionar</option>
-         {% for c in comuna %}
-        <option value="{{ c.id }}">{{ c.nombre_c }}</option>
-        {% endfor %}
-    </select>
-    </div>
-    <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
-        <h5 class="col-sm-2 mt-1 color_letar">Contraseña:</h5>
-    <input type="password" name="contrasena" class="col-sm-4 form-control" placeholder="Contraseña" required >
-    <h5 class="col-sm-2 mt-1 color_letar">Contraseña validar:</h5>
-    <input type="password" name="validar_contrasena" class="col-sm-4 form-control" placeholder="Validar Contraseña" required >
-    <br></div>
-    <input type="submit"  class="btn btn-primary  boton_com" value="      Guardar     ">
-</form>
+            <h5 class="col-sm-2 mt-1 color_letar">nombre:</h5>
+            <input id="nombre_cli" type="text" name="nombre" class="col-sm-4 form-control" placeholder="Juan" required>
+            <div id="error_r" style="color: red; visibility: hidden;" class="error">*Debe ingresar Rut</div>
+            <div id="error_no" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar nombre</div>
+            <br>
+        </div>
+        <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
+            <h5 class="col-sm-2 mt-1 color_letar">apellido:</h5>
+            <input id="apellido" type="text" name="apellido" placeholder="Campos" class="col-sm-4 form-control" required>
+            
+            <h5 class="col-sm-2 mt-1 color_letar">Fecha de nacimiento:</h5>
+            <input type="date" name="Fecha_nacimiento" class="col-sm-4 form-control" required>
+            <div id="error_ap" style="color: red; visibility: hidden;" class="error">*Debe ingresar apellido</div>
+            <div id="error_f" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar Fecha</div>
+            <br>
+        </div>
+        <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
+            <h5 class="col-sm-2 mt-1 color_letar">Correo:</h5>
+            
+            <input type="text" id="correo" class="col-sm-4 form-control" name="correo" placeholder="correo@algo.com" required>
+            <h5 class="col-sm-2 mt-1 color_letar">direccion:</h5>
+            <input type="text" id="dirrecion" name="dirrecion" class="col-sm-4 form-control" placeholder="calle 1234" required>
+            <div id="error_co" style="color: red; visibility: hidden;" class="error">*Debe ingresar Correo</div>
+            <div id="error_di" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar dirrecion</div>
+        </div>
+        <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
+            <h5 class="col-sm-2 mt-1 color_letar">Comuna:</h5>
+            <select id="comuna" class="col-sm-4 form-control" name="comuna" required>
+                <option value="">Seleccionar</option>
+                {% for c in comuna %}
+                <option value="{{ c.id }}">{{ c.nombre_c }}</option>
+                {% endfor %}
+            </select>
+            <div id="error_com" style="color: red; visibility: hidden;" class="error">*Debe ingresar comuna</div>
+        </div>
+        <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
+            <h5 class="col-sm-2 mt-1 color_letar">Contraseña:</h5>
+            <input id="contrasena" type="password" name="contrasena" class="col-sm-4 form-control" placeholder="Contraseña" required>
+            
+            <h5 class="col-sm-2 mt-1 color_letar">Contraseña validar:</h5>
+            <input type="password" id="contrasena_v" name="validar_contrasena" class="col-sm-4 form-control"
+                placeholder="Validar Contraseña" required>
+            <br>
+            <div id="error_contr" style="color: red; visibility: hidden;" class="error">*Debe ingresar contraseña</div>
+            <div id="error_contrv" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar validacion contraseña</div>
+            <div id="error_igual" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Las contraseña deben ser iguales</div>
+ 
+        </div>
+        <input type="submit" id="Guardar_cl" class="btn btn-primary  boton_com" value="      Guardar     ">
+    </form>
 </div>
+
+
+<script type="text/javascript" src="{% static 'pasteleria/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'pasteleria/js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Guardar_cl").click(function () {
+            var rut = $("#rut").val();
+            var nombre = $("#nombre_cli").val();
+            var apellido= $("#apellido").val();
+            var correo= $("#correo").val();
+            var dirrecion= $("#dirrecion").val();
+            var expReg = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i;
+            var esValido = expReg.test(correo);
+            var comuna = $("#comuna").val();
+            var contrasena = $("#contrasena").val();
+            var contrasena_v = $("#contrasena_v").val();
+            if (rut == "") {
+                $("#error_r").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_r").css("visibility", "hidden")
+
+            }
+            if (nombre == "") {
+                $("#error_no").css("visibility", "visible")
+                return false;
+
+            }
+            else {
+                $("#error_no").css("visibility", "hidden")
+           
+            }
+            if (apellido == "") {
+                $("#error_ap").css("visibility", "visible")
+                return false;
+
+            }
+            else {
+                $("#error_ap").css("visibility", "hidden")
+               
+            }
+            if (correo== "") {
+                $("#error_co").css("visibility", "visible")
+                return false;
+
+            }
+            else {
+                $("#error_co").css("visibility", "hidden")
+               
+            }
+            if (esValido == false) {
+                    $("#error_co").css("visibility", "visible",)
+                    return false;
+                }
+                else {
+                    $("#error_co").css("visibility", "hidden")
+                }
+            if (dirrecion== "") {
+                $("#error_di").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_di").css("visibility", "hidden")
+
+            }
+            if (comunan== 0) {
+                $("#error_com").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_com").css("visibility", "hidden")
+
+            }
+            if (contrasena== "") {
+                $("#error_contr").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_contr").css("visibility", "hidden")
+
+            }
+            
+            if (contrasena_v== "") {
+                $("#error_contrv").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_contrv").css("visibility", "hidden")
+
+            }
+            if (contrasena_v== contrasena) {
+                $("#error_igual").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_igual").css("visibility", "hidden")
+
+            }
+
+
+        });
+    });
+
+</script>

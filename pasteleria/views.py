@@ -37,7 +37,10 @@ def frm_registrar_cli(request):
     comuna = Comuna.objects.all()
     carrito = {'comuna':comuna}
     return render(request, 'pasteleria/frm_registrar_cli.html', carrito,)
-
+def torta(request):
+    return render(request, 'pasteleria/torta.html',)
+def pedido(request):
+    return render(request, 'pasteleria/pedido.html',)
 def registrar_cliente(request): 
     error = 'Error en el ingreso del'
     v_error = False
@@ -99,6 +102,7 @@ def cliente_regitrado(request):
 
 def frm_buscar_cliente(request):
     return render(request,'pasteleria/frm_buscar_cliente.html')
+
 def buscar_y_mostrar_cliente(request):
     rut_b = request.POST['rut_b']
     rut_b = rut_b.replace('.','')
@@ -188,7 +192,8 @@ def registrar_comuna(request):
         return render(request, 'pasteleria/error_ingreso.html',)  
     comuna = Comuna(nombre_c=nombre_com)
     comuna.save()
-    return render(request, 'pasteleria/comuna_registrado.html',) 
+    return render(request, 'pasteleria/comuna_registrado.html',)
+
 
 def frm_buscar_comuna(request):
     return render(request,'pasteleria/frm_buscar_comuna.html')

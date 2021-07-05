@@ -9,21 +9,16 @@
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link color_letar" href="Home.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown color_letar">
-                        <a class="nav-link dropdown-toggle color_letar" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Productos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item color_letar" href="Pagina2.html">Torta de Maracuya</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.1.html">Kuchen Durazo y Frambuesas</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.2.html">Cupcakes Frambuesa y Chocolate</a>
-                    <li>
+                    <li class="nav-item active">
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:torta' %}">Producto<span class="sr-only">(current)</span></a>
+                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link color_letar" href="Registro.html">Registrarse</a>
+                        <a class="nav-link color_letar" href="#">Registrarse</a>
                     </li>
+
 
                     <a class="nav-link color_letar" href="{% url 'pasteleria:frm_iniciar_sesion' %}">Iniciar sesion</a>
                     </li>
@@ -41,23 +36,33 @@
     <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
     <input type="text" name="id_editor" value="{{editar.id}}" hidden>
     <h5 class="col-sm-2 mt-1 color_letar">rut:</h5>
-    <input type="text" class="col-sm-4 form-control" name="rut_editor" value="{{editar.rut}}" >
+    <input type="text" id="rut" class="col-sm-4 form-control" name="rut_editor" value="{{editar.rut}}" >
     <h5 class="col-sm-2 mt-1 color_letar">nombre:</h5>
-    <input type="text" name="nombre_editor"  class="col-sm-4 form-control"value="{{editar.nombre_cli}}" >
+    <input type="text" id="nombre_cli" name="nombre_editor"  class="col-sm-4 form-control"value="{{editar.nombre_cli}}" >
+    <div id="error_r" style="color: red; visibility: hidden;" class="error">*Debe ingresar Rut</div>
+    <div id="error_no" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar nombre</div>
+          
+    
     
     </div>
     <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
         <h5 class="col-sm-2 mt-1 color_letar">apellido:</h5>
-    <input type="text" class="col-sm-4 form-control" name="apellido_editor"value="{{editar.apellido_cli}}" >
+    <input id="apellido" type="text" class="col-sm-4 form-control" name="apellido_editor"value="{{editar.apellido_cli}}" >
     <h5 class="col-sm-2 mt-1 color_letar">fecha de nacimiento:</h5>
-    <input type="date" class="col-sm-4 form-control" name="Fecha_nacimiento_editor" value="{{editar.fecha_nac}}" >
+    <input type="date" id="" class="col-sm-4 form-control" name="Fecha_nacimiento_editor" value="{{editar.fecha_nac}}" >
+    <div id="error_ap" style="color: red; visibility: hidden;" class="error">*Debe ingresar apellido</div>
+    <div id="error_f" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar Fecha</div>
+         
     </div>
     <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;">
         <h5 class="col-sm-2 mt-1 color_letar">Correo:</h5>
-    <input type="text" class="col-sm-4 form-control" name="correo_editor" value="{{editar.correo}}" >
-        <h5 class="col-sm-2 mt-1 color_letar">dirrecion:</h5>
-    <input type="text"  class="col-sm-4 form-control" name="dirrecion"  value="{{editar.direccion}}" placeholder="calle 1234" required>
-    </div>
+    <input type="text" id="correo" class="col-sm-4 form-control" name="correo_editor" value="{{editar.correo}}" >
+        <h5 class="col-sm-2 mt-1 color_letar">direccion:</h5>
+    <input type="text" id="dirrecion" class="col-sm-4 form-control" name="dirrecion"  value="{{editar.direccion}}" placeholder="calle 1234" required>
+    <div id="error_co" style="color: red; visibility: hidden;" class="error">*Debe ingresar Correo</div>
+    <div id="error_di" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar dirrecion</div>
+
+</div>
     <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;"> 
         <h5 class="col-sm-2 mt-1 color_letar">Comuna:</h5>
     <select  class="col-sm-4 form-control"  name="comuna" required>
@@ -66,13 +71,18 @@
         <option value="{{ c.id }}">{{ c.nombre_c }}</option>
         {% endfor %}
     </select>
+    <div id="error_com" style="color: red; visibility: hidden;" class="error">*Debe ingresar comuna</div>
     </div>
     <div class="row mover_I_25" style="margin-left: 5%; margin-right: 10%;"> 
         <h5 class="col-sm-2 mt-1 color_letar">Contraseña:</h5>
-    <input type="password" class="col-sm-4 form-control" name='contrasena_editor' value="{{editar.contrasena}}" >
+    <input type="password"  id="contrasena" class="col-sm-4 form-control" name='contrasena_editor' value="{{editar.contrasena}}" >
 
         <h5 class="col-sm-2 mt-1 color_letar">contrasena validar:</h5>
-    <input type="password" class="col-sm-4 form-control" name='validar_contrasena_editor' value="{{editar.contrasena}}" >
+    <input type="password" id="contrasena_v"  class="col-sm-4 form-control" name='validar_contrasena_editor' value="{{editar.contrasena}}" >
+    <div id="error_contr" style="color: red; visibility: hidden;" class="error">*Debe ingresar contraseña</div>
+    <div id="error_contrv" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Debe ingresar validacion contraseña</div>
+    <div id="error_igual" style="color: red; visibility: hidden; margin-left: 35%;" class="error">*Las contraseña deben ser iguales</div>
+
     </div>
     
     <input type="submit"  class="btn btn-primary  boton_com" value="editar">
@@ -83,3 +93,115 @@
     <a  class="btn btn-primary  " style="margin-left: 20%; margin-bottom: 5%;" href="{% url 'pasteleria:frm_buscar_cliente' %}">volver al buscador</a>
 </div>
 </div>
+
+
+<script type="text/javascript" src="{% static 'pasteleria/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'pasteleria/js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Guardar_cl").click(function () {
+            var rut = $("#rut").val();
+            var nombre = $("#nombre_cli").val();
+            var apellido= $("#apellido").val();
+            var correo= $("#correo").val();
+            var dirrecion= $("#dirrecion").val();
+            var expReg = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/i;
+            var esValido = expReg.test(correo);
+            var comuna = $("#comuna").val();
+            var contrasena = $("#contrasena").val();
+            var contrasena_v = $("#contrasena_v").val();
+            if (rut == "") {
+                $("#error_r").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_r").css("visibility", "hidden")
+
+            }
+            if (nombre == "") {
+                $("#error_no").css("visibility", "visible")
+                return false;
+
+            }
+            else {
+                $("#error_no").css("visibility", "hidden")
+           
+            }
+            if (apellido == "") {
+                $("#error_ap").css("visibility", "visible")
+                return false;
+
+            }
+            else {
+                $("#error_ap").css("visibility", "hidden")
+               
+            }
+            if (correo== "") {
+                $("#error_co").css("visibility", "visible")
+                return false;
+
+            }
+            else {
+                $("#error_co").css("visibility", "hidden")
+               
+            }
+            if (esValido == false) {
+                    $("#error_co").css("visibility", "visible",)
+                    return false;
+                }
+                else {
+                    $("#error_co").css("visibility", "hidden")
+                }
+            if (dirrecion== "") {
+                $("#error_di").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_di").css("visibility", "hidden")
+
+            }
+            if (comunan== 0) {
+                $("#error_com").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_com").css("visibility", "hidden")
+
+            }
+            if (contrasena== "") {
+                $("#error_contr").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_contr").css("visibility", "hidden")
+
+            }
+            
+            if (contrasena_v== "") {
+                $("#error_contrv").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_contrv").css("visibility", "hidden")
+
+            }
+            if (contrasena_v== contrasena) {
+                $("#error_igual").css("visibility", "visible")
+                return false;
+            }
+
+            else {
+                $("#error_igual").css("visibility", "hidden")
+
+            }
+
+
+        });
+    });
+
+</script>

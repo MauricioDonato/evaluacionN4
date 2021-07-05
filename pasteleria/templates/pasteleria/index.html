@@ -9,18 +9,12 @@
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link color_letar" href="Home.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown color_letar">
-                        <a class="nav-link dropdown-toggle color_letar" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Productos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item color_letar" href="#">Torta de Maracuya</a>
-                            <a class="dropdown-item color_letar" href="#">Kuchen Durazo y Frambuesas</a>
-                            <a class="dropdown-item color_letar" href="#">Cupcakes Frambuesa y Chocolate</a>
-                    <li>
+                    <li class="nav-item active">
+                        <a class="nav-link color_letar" href="{% url 'pasteleria:torta' %}">Producto<span class="sr-only">(current)</span></a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link color_letar" href="#">Registrarse</a>
                     </li>
