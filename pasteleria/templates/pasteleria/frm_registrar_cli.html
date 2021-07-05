@@ -10,6 +10,15 @@
     <br>
     <input type="text" name="correo" placeholder="correo@algo.com" required>
     <br>
+    <input type="text" name="dirrecion" placeholder="calle 1234" required>
+    <br>
+    <select name="comuna" required>
+        <option value="">Seleccionar</option>
+        {% for c in comuna %}
+        <option value="{{ c.id }}">{{ c.nombre_c }}</option>
+        {% endfor %}
+    </select>
+    <br>
     <input type="password" name="contrasena" placeholder="Contraseña" required >
     <br>
     <input type="password" name="validar_contrasena" placeholder="Validar Contraseña" required >

@@ -12,6 +12,15 @@
     <br>
     <input type="text" name="correo_editor" value="{{editar.correo}}" >
     <br>
+    <input type="text" name="dirrecion"  value="{{editar.direccion}}" placeholder="calle 1234" required>
+    <br>
+    <select name="comuna" required>
+        <option value="">Seleccionar</option>
+        {% for c in comuna %}
+        <option value="{{ c.id }}">{{ c.nombre_c }}</option>
+        {% endfor %}
+    </select>
+    <br>
     <input type="password" name='contrasena_editor' value="{{editar.contrasena}}" >
 
     <br>

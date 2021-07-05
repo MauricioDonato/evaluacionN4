@@ -35,13 +35,15 @@
             </div>
     </nav>
 </div>
-<div class="container color_verde " id="">
-    <a href="{% url 'pasteleria:frm_registrar_cli' %}">Registrar Cliente</a>
-    <a href="{% url 'pasteleria:frm_buscar_cliente' %}">Buscar Cliente</a>
-
+<div class="container col-sm-7 mt-2 frm_comuna">
+    <h1 class="centrar">Ingresar Comuna</h1>
+<form action="{% url 'pasteleria:registrar_comuna' %}" method="post">
+    {% csrf_token %}
+    <div class="row mover_I_25">
+        <h5 class="col-sm-2 mt-1">comuna:</h5>
+    <input type="text" name="nombre_comuna" class="col-sm-4 form-control" placeholder="Maipu"  required >
+    <br>
+    </div>
+    <input type="submit" class="btn btn-primary  boton_com" value="Guardar">
+</form>
 </div>
-<a href="{% url 'pasteleria:frm_comuna' %}">Registrar Comuna</a>
-<a href="{% url 'pasteleria:frm_buscar_comuna' %}">Buscar Comuna</a>
-<br>
-<a href="{% url 'pasteleria:frm_producto' %}">Registrar Producto</a>
-<a href="{% url 'pasteleria:frm_buscar_producto' %}">Buscar Producto</a>

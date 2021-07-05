@@ -35,13 +35,25 @@
             </div>
     </nav>
 </div>
-<div class="container color_verde " id="">
-    <a href="{% url 'pasteleria:frm_registrar_cli' %}">Registrar Cliente</a>
-    <a href="{% url 'pasteleria:frm_buscar_cliente' %}">Buscar Cliente</a>
+{% if listado %}
+<ul>
+    {% for c in listado %}
+    <div class="row"></div>
+    <li class="col-3 borde_mostrar">{{c.id}}) nombre: {{ c.nombre_c }}</li>
 
-</div>
-<a href="{% url 'pasteleria:frm_comuna' %}">Registrar Comuna</a>
-<a href="{% url 'pasteleria:frm_buscar_comuna' %}">Buscar Comuna</a>
-<br>
-<a href="{% url 'pasteleria:frm_producto' %}">Registrar Producto</a>
-<a href="{% url 'pasteleria:frm_buscar_producto' %}">Buscar Producto</a>
+    <form  action="{% url 'pasteleria:eliminar_comuna' %}" method="POST" >
+        {% csrf_token %}
+        <input type="number" name="id_e" value="{{c.id}}" hidden  >
+        <input type="submit" value="Eliminar" >
+    </form>
+    <form action="{% url 'pasteleria:editar_comuna' %}" method="POST">
+        {% csrf_token %}
+        <input type="number" name="id_d" value="{{c.id}}" hidden >
+        <input type="submit" value="Editar">
+    </form>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Sin información</p>
+{% endif %}
+<a href="{% url 'pasteleria:index' %}">volver a pagina inicial</a>

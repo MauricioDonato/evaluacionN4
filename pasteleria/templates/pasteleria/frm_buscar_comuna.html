@@ -35,13 +35,14 @@
             </div>
     </nav>
 </div>
-<div class="container color_verde " id="">
-    <a href="{% url 'pasteleria:frm_registrar_cli' %}">Registrar Cliente</a>
-    <a href="{% url 'pasteleria:frm_buscar_cliente' %}">Buscar Cliente</a>
-
+<div class="container col-sm-7 mt-4 frm_comuna">
+<h1 class="centrar">Buscar Comuna</h1>
+<form action="{% url 'pasteleria:buscar_y_mostrar_comuna' %}" method="POST">
+    {% csrf_token %}
+    <div class="row mover_I_25">
+    <h4 col-sm-2 mt-2>comuna:</h4>
+    <input type="text" name="nombre_buscar" class="col-sm-4 ml-1 form-control" placeholder="Maipú">
+    </div>
+    <input type="submit" class="btn btn-primary  boton_com" value="Buscar">
+</form>
 </div>
-<a href="{% url 'pasteleria:frm_comuna' %}">Registrar Comuna</a>
-<a href="{% url 'pasteleria:frm_buscar_comuna' %}">Buscar Comuna</a>
-<br>
-<a href="{% url 'pasteleria:frm_producto' %}">Registrar Producto</a>
-<a href="{% url 'pasteleria:frm_buscar_producto' %}">Buscar Producto</a>

@@ -1,0 +1,11 @@
+<form action="{% url 'pasteleria:editador_comuna' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="id_editor" value="{{comuna.id}}" hidden>
+    <br>
+    <input type="text" name="nombre_editor" value="{{comuna.nombre_c}}" >
+    <br>
+
+    <input type="submit" value="editar">
+</form>
+<a href="{% url 'pasteleria:index' %}">volver a pagina inicial</a>
+<a href="{% url 'pasteleria:frm_buscar_comuna' %}">volver al buscador</a>
