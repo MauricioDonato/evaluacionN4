@@ -12,6 +12,9 @@ from itertools import cycle
 def index(request):
 
     return render(request, 'pasteleria/index.html',)
+def home(request):
+
+    return render(request, 'pasteleria/home.html',)
 
 def frm_registrar_cli(request):
     comuna = Comuna.objects.all()
@@ -43,7 +46,7 @@ def registrar_cliente(request):
     cantidad = len(rut_c)
 
     if request.POST['contrasena'] != request.POST['validar_contrasena']:
-        return HttpResponse('las contraseñas deben ser iguales')
+        return render(request, 'pasteleria/error_contrase.html')
     if(fecha =="" or apellido =="" or correo =="" or nombre =="" or contrasena =="" or rut_c =="" or dirrecion=="" or comuna ==""):
         return render(request, 'pasteleria/error_ingreso.html')
     if cantidad < 8:

@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg  color_menu">
         <div class="container">
             <img id="imagen" class="logo" src="{% static 'pasteleria/img/logo_cafe.png' %}">
-            <a class="navbar-brand color_letar" href="#">Cake House</a>
+            <a class="navbar-brand color_letar" href="{% url 'pasteleria:frm_buscar_producto' %}">Cake House</a>
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -34,14 +34,27 @@
                 </ul>
             </div>
     </nav>
-</div>
-<div class="container color_verde " id="">
-    <a href="{% url 'pasteleria:frm_registrar_cli' %}">Registrar Cliente</a>
-    <a href="{% url 'pasteleria:frm_buscar_cliente' %}">Buscar Cliente</a>
+</div><div class="row  mt-6  " style="margin-left: 10%;">
+<div class="col-4 color_index " >
+    <h3 style="margin-left: 30%;">Cliente</h3>
+    <div class=" ml-1 btn btn-primary col-sm-5" style="margin-left: 7%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%;">
+    <a class=" color_letra" href="{% url 'pasteleria:frm_registrar_cli' %}">Registrar Cliente</a></div>
+    <div class=" ml-1 btn btn-primary col-sm-5" style="margin-left: 7%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%;">
+    <a class=" color_letra" href="{% url 'pasteleria:frm_buscar_cliente' %}">Buscar Cliente</a></div>
 
 </div>
-<a href="{% url 'pasteleria:frm_comuna' %}">Registrar Comuna</a>
-<a href="{% url 'pasteleria:frm_buscar_comuna' %}">Buscar Comuna</a>
+<div class="row  col-4 color_index ">
+    <h3 style="margin-left: 30%;">Comuna</h3>
+    <div class=" ml-1 btn btn-primary col-sm-5" style="margin-left: 7%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%;">
+<a class=" color_letra" href="{% url 'pasteleria:frm_comuna' %}">Registrar Comuna</a></div>
+<div class=" ml-1 btn btn-primary col-sm-5" style="margin-left: 7%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%;">
+<a class=" color_letra" href="{% url 'pasteleria:frm_buscar_comuna' %}">Buscar Comuna</a></div>
 <br>
-<a href="{% url 'pasteleria:frm_producto' %}">Registrar Producto</a>
-<a href="{% url 'pasteleria:frm_buscar_producto' %}">Buscar Producto</a>
+</div>
+<div class="row col-4 color_index  " style="margin-left: 20%;">
+    <h3 style="margin-left: 30%;">Producto</h3>
+<div class=" ml-1 btn btn-primary col-sm-5" style="margin-left: 7%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%;">
+<a class=" color_letra" href="{% url 'pasteleria:frm_producto' %}">Registrar Producto</a></div>
+<div class=" ml-1 btn btn-primary col-sm-5" style="margin-left: 7%; margin-right: 5%; margin-top: 5%; margin-bottom: 5%;">
+<a class=" color_letra"  href="{% url 'pasteleria:frm_buscar_producto' %}">Buscar Producto</a></div>
+</div>

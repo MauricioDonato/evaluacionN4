@@ -12,14 +12,15 @@
                         <a class="nav-link color_letar" href="Home.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown color_letar">
-                        <a class="nav-link dropdown-toggle color_letar" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle color_letar" href="#" id="navbarDropdownMenuLink"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Productos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item color_letar" href="Pagina2.html">Torta de Maracuya</a>
                             <a class="dropdown-item color_letar" href="Pagina2.1.html">Kuchen Durazo y Frambuesas</a>
-                            <a class="dropdown-item color_letar" href="Pagina2.2.html">Cupcakes Frambuesa y Chocolate</a>
+                            <a class="dropdown-item color_letar" href="Pagina2.2.html">Cupcakes Frambuesa y
+                                Chocolate</a>
                     <li>
                     <li class="nav-item">
                         <a class="nav-link color_letar" href="Registro.html">Registrarse</a>
@@ -36,24 +37,43 @@
     </nav>
 </div>
 {% if listado %}
-<ul>
-    {% for c in listado %}
-    <div class="row"></div>
-    <li class="col-3 borde_mostrar">{{c.id}}) nombre: {{ c.nombre_c }}</li>
 
-    <form  action="{% url 'pasteleria:eliminar_comuna' %}" method="POST" >
-        {% csrf_token %}
-        <input type="number" name="id_e" value="{{c.id}}" hidden  >
-        <input type="submit" value="Eliminar" >
-    </form>
-    <form action="{% url 'pasteleria:editar_comuna' %}" method="POST">
-        {% csrf_token %}
-        <input type="number" name="id_d" value="{{c.id}}" hidden >
-        <input type="submit" value="Editar">
-    </form>
-    {% endfor %}
-</ul>
+{% for c in listado %}
+<table class="table table-bordered color_menu mt-5">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre comuna</th>
+
+            <th scope="col">Eliminar</th>
+            <th scope="col">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{c.id}})</th>
+            <td>{{ c.nombre_c }}</td>
+            <td>
+                <form action="{% url 'pasteleria:eliminar_comuna' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="number" name="id_e" value="{{c.id}}" hidden>
+                    <input type="submit" class="btn btn-primary" value="Eliminar">
+                </form>
+            </td>
+            <td>
+                <form action="{% url 'pasteleria:editar_comuna' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="number" name="id_d" value="{{c.id}}" hidden>
+                    <input type="submit" class="btn btn-primary" value="Editar">
+                </form>
+            </td>
+        </tr>
+        <tr>
+    </tbody>
+</table>
+{% endfor %}
+
 {% else %}
-<p>Sin información</p>
+<h1 class="mover_I_25 " >Sin información</h1>
 {% endif %}
-<a href="{% url 'pasteleria:index' %}">volver a pagina inicial</a>
+<a class="btn btn-primary mover_I_25" style="margin-left: 40%;" href="{% url 'pasteleria:index' %}">Volver a la pagina inicial</a>

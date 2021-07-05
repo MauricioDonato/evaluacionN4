@@ -35,19 +35,5 @@
             </div>
     </nav>
 </div>
-<div class="container col-sm-7 mt-2 frm_comuna">  
-    <h1 class="centrar">Eliminar Producto</h1>
-<form action="{% url 'pasteleria:eliminador_producto' %}" method="post">
-    {% csrf_token %}
-    <div class="row mover_I_25">
-    <input type="text" name="id_eliminado" value="{{eliminador.id}}" hidden>
-    <h5 class="col-sm-2 mt-1">Producto:</h5>
-    <input type="text" name="nombre_e" class="col-sm-4 form-control" value="{{eliminador.nombre_pro}}" disabled>
-    </div>
-    <div class="row mover_I_25">
-        <h5 class="col-sm-2 mt-1">Precio:</h5>
-    <input type="text" name="nombre_e"   class="col-sm-4 form-control" value="{{eliminador.precio_pro}}" disabled>
-    </div>
-    <input type="submit"  class="btn btn-primary boton_com" value="eliminar">
-</form>
-</div>
+<h1 lass="mover_I_25 "> Error en el ingreso del Contraseña </h1>
+<a class="btn btn-primary mover_I_25" style="margin-left: 40%;" href="{% url 'pasteleria:index' %}">Volver a la pagina inicial</a>

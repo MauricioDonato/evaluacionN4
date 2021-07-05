@@ -41,9 +41,32 @@
     {% csrf_token %}
     <div class="row mover_I_25">
         <h5 class="col-sm-2 mt-1">comuna:</h5>
-    <input type="text" name="nombre_comuna" class="col-sm-4 form-control" placeholder="Maipu"  required >
+    <input type="text" id="c_nombre"  name="nombre_comuna" class="col-sm-4 form-control" placeholder="Maipu"  required >
+    <div id="error_c" style="color: red; visibility: hidden;" class="error">*Debe ingresar comuna</div>
     <br>
     </div>
-    <input type="submit" class="btn btn-primary  boton_com" value="Guardar">
+    <input type="submit" id="Guardar_c" class="btn btn-primary  boton_com" value="Guardar">
 </form>
 </div>
+
+<script src="{% static 'pasteleria/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'pasteleria/js/jquery-3.6.0.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $("#Guardar_c").click(function () {
+            
+            nombre = $("#c_nombre").val;
+            
+            if (nombre == "") {
+                $("#error_c").css("visibility", "visible")
+                return false;
+            }
+            else {
+                $("#error_c").css("visibility", "hidden")
+                alert ("Hola Mundo");
+            }
+
+        });
+        });
+
+</script>
