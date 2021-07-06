@@ -30,11 +30,11 @@
     </nav>
 </div>
 <div class="container col-sm-7 mt-4 frm_comuna">
-<h1>Buscar cliente</h1>
+<h1 style="margin-left: 30%;" class="color_letar">Buscar cliente</h1>
 <form action="{% url 'pasteleria:buscar_y_mostrar_cliente' %}" method="POST">
     {% csrf_token %}
-    <div class="row mover_I_25">
-        <h4 col-sm-2 mt-2>nombre:</h4>
+    <div class="row mover_I_25" >
+        <h4 clalss="col-sm-2 mt-2">Rut:</h4>
     <input type="text" class="col-sm-4 ml-1 form-control"  name="rut_b" placeholder="123456789">
     </div>
     <input type="submit" class="btn btn-primary  boton_com" value="Buscar">
